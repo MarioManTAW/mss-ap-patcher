@@ -5,11 +5,11 @@ import zipfile
 
 def update_shop_text_lengths(f: BufferedRandom, start_addr: int):
     f.seek(start_addr)
-    base: int = int.from_bytes(f.read(4))
+    base: int = int.from_bytes(f.read(4), "big")
     addr: int = base
     for _ in range(7):
         addr += 41
-        f.write(addr.to_bytes(4))
+        f.write(addr.to_bytes(4, "big"))
 
 def update_item_text(f: BufferedRandom, location: int, player: str, item: str, flags: int):
     location_to_addr: dict[int, int] = {
@@ -116,7 +116,7 @@ with zipfile.ZipFile(argv[1]) as patch:
         update_shop_text_lengths(f, 0x27BE1CDC)
         # point Luigi's Flashlight in Secret Shop to Blue Pianta's shop
         f.seek(0x27BE1D08)
-        f.write(0x14DAC.to_bytes(4))
+        f.write(0x14DAC.to_bytes(4, "big"))
         data = json.load(patch.open("mss.json"))
         update_goal_characters(f, data["goal_characters"])
         for location in data["locations"]:
