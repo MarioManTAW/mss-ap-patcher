@@ -76,13 +76,13 @@ def update_item_text(f: BufferedRandom, location: int, player: str, item: str, f
         else:
             f.write(bytes([0xFF, 0x1F]))
     f.write(bytes([0xFF, 0x07, 0xFF, 0x53, 0x00, 0x20]))
-    if flags & 0x011 == 0x011:
+    if flags & 0b011 == 0b011:
         f.write(bytes([0xF0, 0x09]))
-    elif flags & 0x001:
+    elif flags & 0b001:
         f.write(bytes([0xF0, 0x03]))
-    elif flags & 0x010:
+    elif flags & 0b010:
         f.write(bytes([0xF0, 0x08]))
-    elif flags & 0x100:
+    elif flags & 0b100:
         f.write(bytes([0xF0, 0x01]))
     else:
         f.write(bytes([0xF0, 0x0A]))
