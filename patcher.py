@@ -1,7 +1,6 @@
 from sys import argv
 from io import BufferedRandom
 import json
-import os
 import random
 import zipfile
 
@@ -353,9 +352,9 @@ def randomize_puzzles(dol: BufferedRandom, dat: BufferedRandom) -> None:
 with zipfile.ZipFile(argv[1]) as patch:
     manifest = json.load(patch.open("archipelago.json"))
     if manifest["patch_version"] <= 1:
-        h = open(os.path.join(os.path.dirname(__file__), "tmp/DATA/disc/header.bin"), "r+b")
-        dol = open(os.path.join(os.path.dirname(__file__), "tmp/DATA/sys/main.dol"), "r+b")
-        dat = open(os.path.join(os.path.dirname(__file__), "tmp/DATA/files/dt_na.dat"), "r+b")
+        h = open("tmp/disc/header.bin", "r+b")
+        dol = open("tmp/sys/main.dol", "r+b")
+        dat = open("tmp/files/dt_na.dat", "r+b")
         # point Luigi's Flashlight in Secret Shop to Blue Pianta's shop
         dat.seek(0x27BE1D08)
         dat.write(0x14DAC.to_bytes(4, "big"))

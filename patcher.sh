@@ -6,7 +6,7 @@ elif [ ! -f "$1" ]
 then
     echo "Specified patch file appears not to exist. Aborting."
 else
-    bin/wit extract -s vanilla -D tmp -o
+    bin/wit extract -s vanilla -D tmp -o --psel DATA
     python3 patcher.py $1
     bin/wit copy tmp -o ${1%.*}.wbfs
     rm -rf tmp
