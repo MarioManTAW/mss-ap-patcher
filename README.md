@@ -1,4 +1,6 @@
 # MSS AP Patcher
+### Requirements
+- Python 3
 ### Installation Instructions
 - Download and extract the latest release from the releases page.
 - Place (a copy of) your unmodified Mario Super Sluggers game file in the /vanilla directory. ISO, CISO, and WBFS are supported file formats.

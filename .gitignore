@@ -2,3 +2,5 @@
 *.ciso
 *.wbfs
 *.apmss
+tmp
+.venv
