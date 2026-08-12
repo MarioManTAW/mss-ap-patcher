@@ -360,7 +360,7 @@ with zipfile.ZipFile(argv[1]) as patch:
         dat.write(0x14DAC.to_bytes(4, "big"))
         data = json.load(patch.open("mss.json"))
         update_goal_characters(dol, dat, data["goal_characters"])
-        if data["randomize_shops"] == 2:
+        if manifest["patch_version"] < 1 or data["randomize_shops"] == 2:
             update_shop_text_lengths(dat, 0x27BE1A88)
             update_shop_text_lengths(dat, 0x27BE1AEC)
             update_shop_text_lengths(dat, 0x27BE1B50)
