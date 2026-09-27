@@ -349,7 +349,8 @@ def randomize_puzzles(dol: BufferedRandom, dat: BufferedRandom) -> None:
         dat.write(bytes([d + 0x34]))
         dat.seek(3, 1)
 
-with zipfile.ZipFile(argv[1]) as patch:
+clean_argvs = " ".join(argv[1:len(argv)]) # this should deal with the issue of paths with spaces being passed as multiple args
+with zipfile.ZipFile(clean_argvs) as patch:
     manifest = json.load(patch.open("archipelago.json"))
     if manifest["patch_version"] <= 1:
         h = open("tmp/disc/header.bin", "r+b")
