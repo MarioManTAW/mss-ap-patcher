@@ -349,7 +349,7 @@ def randomize_puzzles(dol: BufferedRandom, dat: BufferedRandom) -> None:
         dat.write(bytes([d + 0x34]))
         dat.seek(3, 1)
 
-with zipfile.ZipFile(argv[1]) as patch:
+with zipfile.ZipFile(" ".join(argv[1:])) as patch:
     manifest = json.load(patch.open("archipelago.json"))
     if manifest["patch_version"] <= 1:
         h = open("tmp/disc/header.bin", "r+b")
